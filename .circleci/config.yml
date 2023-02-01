@@ -23,7 +23,8 @@ jobs: # a basic unit of work in a run
           app-dir: iostest
       - run:
           name: simulater
-          command: open -a Simulator
+          #command: open -a Simulator
+          command: flutter devices
       - run:
           name: flutter build
           command: flutter run ios
