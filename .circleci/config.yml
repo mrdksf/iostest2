@@ -1,0 +1,51 @@
+version: 2.1
+
+orbs:
+  flutter: circleci/flutter@1.1.0
+
+jobs: # a basic unit of work in a run
+  test: # your job name
+    macos:
+      xcode: 14.1.0 # indicate our selected version of Xcode
+    steps: # a series of commands to run
+      - checkout  # pull down code from your version control system.
+      - run:
+          name: Run Unit Tests
+          command: xcodebuild test -scheme circleci-demo-macos
+
+  build:
+    macos:
+      xcode: 14.1.0 # indicate our selected version of Xcodez
+    steps:
+      - checkout
+      - flutter/install_sdk_and_pub:
+          flutter_version: 3.7.0
+          app-dir: iostest
+      - run:
+          name: simulater
+          command: open -a Simulator
+      - run:
+          name: flutter build
+          command: flutter run ios
+      #- run:
+          # build our application
+          #name: Build Application
+          #command: xcodebuild clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+          #working_directory: iostest/ios/Runner.xcodeproj
+          #working_directory: calendar
+      #- run:
+          # compress Xcode's build output so that it can be stored as an artifact
+          #name: Compress app for storage
+          #command: zip -r app.zip build/Release/circleci-demo-macos.app
+      - run:
+          # compress Xcode's build output so that it can be stored as an artifact
+          name: Compress app for storage
+          command: zip -r app.zip iostest/ios
+      - store_artifacts: # store this build output. Read more: https://circleci.com/docs/2.0/artifacts/
+          path: app.zip
+          destination: app
+
+workflows:
+  test_build:
+    jobs:
+      - build
