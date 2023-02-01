@@ -29,7 +29,7 @@ jobs: # a basic unit of work in a run
           command: flutter run ios
       #- run:
           # build our application
-          ##name: Build Application
+          #name: Build Application
           #command: xcodebuild clean build CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
           #working_directory: iostest/ios/Runner.xcodeproj
           #working_directory: calendar
