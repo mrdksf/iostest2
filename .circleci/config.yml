@@ -35,6 +35,9 @@ jobs: # a basic unit of work in a run
       - run:
           name: flutter build
           command: flutter run
+      - run:
+          name: stop
+          command: q
       #- run:
           # build our application
           #name: Build Application
