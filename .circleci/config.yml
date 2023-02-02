@@ -21,7 +21,7 @@ jobs: # a basic unit of work in a run
       - checkout
       - run:
           name: list
-          command: li
+          command: ls
       #- macos/preboot-simulator:
       #    version: "15.5"
       #    platform: "iOS"
