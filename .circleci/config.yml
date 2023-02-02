@@ -19,26 +19,19 @@ jobs: # a basic unit of work in a run
       xcode: 14.1.0 # indicate our selected version of Xcodez
     steps:
       - checkout
+      - macos/preboot-simulator:
+          version: "15.5"
+          platform: "iOS"
+          device: "iPhone 13 Pro"
+      - attach_workspace:
+          at: .
+      - flutter/install_sdk_and_pub:
+          flutter_version: 3.7.0
+          app-dir: iostest
       - run:
-          name: list
-          command: ls
-      #- macos/preboot-simulator:
-      #    version: "15.5"
-      #    platform: "iOS"
-      #    device: "iPhone 13 Pro"
-      #- attach_workspace:
-      #    at: .
-      #- flutter/install_sdk_and_pub:
-      #    flutter_version: 3.7.0
-      #    app-dir: iostest
-      #- run:
-      #    name: simulater
-      #    #command: open -a Simulator
-      #    command: flutter devices
-      #- run:
-      #    name: flutter build
-      #    command: flutter run
-      #    no_output_timeout: 1m30s
+          name: flutter build
+          command: flutter run
+          no_output_timeout: 1m30s
       #- run:
           # build our application
           #name: Build Application
@@ -52,7 +45,7 @@ jobs: # a basic unit of work in a run
       - run:
           # compress Xcode's build output so that it can be stored as an artifact
           name: Compress app for storage
-          command: zip -r app.zip iostest2/ios
+          command: zip -r app.zip -i ios
           when: on_fail
       - store_artifacts: # store this build output. Read more: https://circleci.com/docs/2.0/artifacts/
           path: app.zip
