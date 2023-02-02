@@ -34,8 +34,8 @@ jobs: # a basic unit of work in a run
           command: flutter devices
       - run:
           name: flutter build
-          command: flutter run --release
-          #no_output_timeout: 30s
+          command: flutter run
+          no_output_timeout: 30s
       #- run:
           # build our application
           #name: Build Application
