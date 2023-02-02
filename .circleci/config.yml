@@ -34,7 +34,7 @@ jobs: # a basic unit of work in a run
           command: flutter devices
       - run:
           name: flutter build
-          command: flutter run ios
+          command: flutter run
       #- run:
           # build our application
           #name: Build Application
