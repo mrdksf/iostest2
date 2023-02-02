@@ -20,9 +20,9 @@ jobs: # a basic unit of work in a run
     steps:
       - checkout
       - macos/preboot-simulator:
-          version: "15.0"
+          version: "15.5"
           platform: "iOS"
-          device: "iPhone 13 Pro Max"
+          device: "iPhone X"
       - attach_workspace:
           at: .
       - flutter/install_sdk_and_pub:
