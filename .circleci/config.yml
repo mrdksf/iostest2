@@ -16,7 +16,7 @@ jobs: # a basic unit of work in a run
 
   build:
     macos:
-      xcode: 14.1.0 # indicate our selected version of Xcodez
+      xcode: 14.2.0 # indicate our selected version of Xcodez
     steps:
       - checkout
       - macos/preboot-simulator:
